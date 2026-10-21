@@ -1,0 +1,1730 @@
+{
+  "id": "887fc30e-5ee5-4ada-86b6-d0bad5341ab9",
+  "revision": 5,
+  "last_node_id": 28,
+  "last_link_id": 34,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UnetLoaderGGUF",
+      "pos": [
+        1100,
+        290
+      ],
+      "size": [
+        300,
+        80
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "Model",
+          "localized_name": "Model",
+          "name": "unet_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "unet_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Model",
+          "localized_name": "Model",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "Model · Q8",
+      "properties": {
+        "Node name for S&R": "UnetLoaderGGUF"
+      },
+      "widgets_values": [
+        "qwen-image-2.1-Q8_0.gguf"
+      ],
+      "widgets_values_named": {
+        "unet_name": "qwen-image-2.1-Q8_0.gguf"
+      }
+    },
+    {
+      "id": 2,
+      "type": "CLIPLoader",
+      "pos": [
+        1100,
+        80
+      ],
+      "size": [
+        300,
+        130
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "CLIP",
+          "localized_name": "clip_name",
+          "name": "clip_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "clip_name"
+          },
+          "link": null
+        },
+        {
+          "label": "模型类型",
+          "localized_name": "type",
+          "name": "type",
+          "type": "COMBO",
+          "widget": {
+            "name": "type"
+          },
+          "link": null
+        },
+        {
+          "label": "Device",
+          "localized_name": "device",
+          "name": "device",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CLIP",
+          "localized_name": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "title": "CLIP Loader",
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen3vl_8b_int8_convrot.safetensors",
+        "qwen_image",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_8b_int8_convrot.safetensors",
+        "type": "qwen_image",
+        "device": "default"
+      }
+    },
+    {
+      "id": 3,
+      "type": "VAELoader",
+      "pos": [
+        1100,
+        450
+      ],
+      "size": [
+        300,
+        80
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "VAE",
+          "localized_name": "vae_name",
+          "name": "vae_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "VAE",
+          "localized_name": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            5,
+            6
+          ]
+        }
+      ],
+      "title": "VAE Loader",
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "qwen_image_2.1_vae_bf16.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+      }
+    },
+    {
+      "id": 9,
+      "type": "ResolutionSelector",
+      "pos": [
+        1100,
+        610
+      ],
+      "size": [
+        300,
+        170
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 3,
+      "mode": 0,
+      "showAdvanced": true,
+      "inputs": [
+        {
+          "label": "宽高比",
+          "localized_name": "aspect_ratio",
+          "name": "aspect_ratio",
+          "type": "COMBO",
+          "widget": {
+            "name": "aspect_ratio"
+          },
+          "link": null
+        },
+        {
+          "label": "百万像素",
+          "localized_name": "megapixels",
+          "name": "megapixels",
+          "type": "FLOAT",
+          "widget": {
+            "name": "megapixels"
+          },
+          "link": null
+        },
+        {
+          "label": "尺寸对齐倍数",
+          "localized_name": "multiple",
+          "name": "multiple",
+          "type": "INT",
+          "widget": {
+            "name": "multiple"
+          },
+          "link": null
+        },
+        {
+          "label": "尺寸预览",
+          "localized_name": "preview",
+          "name": "preview",
+          "shape": 7,
+          "type": "RESOLUTION_PREVIEW",
+          "widget": {
+            "name": "preview"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "宽度",
+          "localized_name": "width",
+          "name": "width",
+          "type": "INT",
+          "links": [
+            7
+          ]
+        },
+        {
+          "label": "高度",
+          "localized_name": "height",
+          "name": "height",
+          "type": "INT",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "title": "文生图尺寸",
+      "properties": {
+        "Node name for S&R": "ResolutionSelector"
+      },
+      "widgets_values": [
+        "16:9 (Widescreen)",
+        1,
+        32
+      ],
+      "widgets_values_named": {
+        "aspect_ratio": "16:9 (Widescreen)",
+        "megapixels": 1,
+        "multiple": 32
+      }
+    },
+    {
+      "id": 4,
+      "type": "EmptyLatentImage",
+      "pos": [
+        1100,
+        860
+      ],
+      "size": [
+        300,
+        130
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "宽度",
+          "localized_name": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 7
+        },
+        {
+          "label": "高度",
+          "localized_name": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 8
+        },
+        {
+          "label": "基础批次大小",
+          "localized_name": "batch_size",
+          "name": "batch_size",
+          "type": "INT",
+          "widget": {
+            "name": "batch_size"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Latent",
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "title": "Empty Latent",
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1376,
+        768,
+        1
+      ],
+      "widgets_values_named": {
+        "width": 1376,
+        "height": 768,
+        "batch_size": 1
+      }
+    },
+    {
+      "id": 11,
+      "type": "MirrorOptionalReferenceImage",
+      "pos": [
+        40,
+        460
+      ],
+      "size": [
+        300,
+        260
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "参考图片",
+          "localized_name": "参考图片",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "label": "启用此参考图",
+          "localized_name": "启用此参考图",
+          "name": "enabled",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "enabled"
+          },
+          "link": null
+        },
+        {
+          "label": "上传参考图",
+          "localized_name": "上传参考图",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "参考图片",
+          "localized_name": "参考图片",
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            19
+          ]
+        },
+        {
+          "label": "Mask",
+          "localized_name": "Mask",
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "label": "参考图有效",
+          "localized_name": "参考图有效",
+          "name": "reference_active",
+          "type": "BOOLEAN",
+          "links": []
+        }
+      ],
+      "title": "参考图 1",
+      "properties": {
+        "Node name for S&R": "MirrorOptionalReferenceImage"
+      },
+      "widgets_values": [
+        "",
+        true,
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "",
+        "enabled": true,
+        "upload": "image"
+      }
+    },
+    {
+      "id": 5,
+      "type": "TextEncodeQwenImage21",
+      "pos": [
+        1500,
+        500
+      ],
+      "size": [
+        340,
+        360
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "CLIP",
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 4
+        },
+        {
+          "label": "image_1",
+          "localized_name": "image_1",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 19
+        },
+        {
+          "localized_name": "image_2",
+          "name": "images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 23
+        },
+        {
+          "localized_name": "image_3",
+          "name": "images.image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 25
+        },
+        {
+          "localized_name": "image_4",
+          "name": "images.image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 27
+        },
+        {
+          "localized_name": "image_5",
+          "name": "images.image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "VAE",
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 5
+        },
+        {
+          "label": "提示词",
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 31
+        },
+        {
+          "label": "负面提示词",
+          "localized_name": "negative_prompt",
+          "name": "negative_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt"
+          },
+          "link": 32
+        },
+        {
+          "label": "参考图分辨率",
+          "localized_name": "resolution",
+          "name": "resolution",
+          "type": "INT",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Positive",
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            13
+          ]
+        },
+        {
+          "label": "Negative",
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            14
+          ]
+        },
+        {
+          "label": "Latent",
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "links": []
+        }
+      ],
+      "title": "Text Encode · 提示词与参考图",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImage21"
+      },
+      "widgets_values": [
+        "",
+        "",
+        1024
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "negative_prompt": "",
+        "resolution": 1024
+      }
+    },
+    {
+      "id": 10,
+      "type": "Power Lora Loader (rgthree)",
+      "pos": [
+        1500,
+        80
+      ],
+      "size": [
+        340,
+        280
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "label": "Model",
+          "localized_name": "Model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "dir": 3,
+          "label": "CLIP",
+          "localized_name": "CLIP",
+          "name": "clip",
+          "shape": 7,
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "label": "Model",
+          "localized_name": "Model",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            3
+          ]
+        },
+        {
+          "dir": 4,
+          "label": "CLIP",
+          "localized_name": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "title": "LoRA",
+      "properties": {
+        "Show Strengths": "Single Strength",
+        "Match": "",
+        "Node name for S&R": "Power Lora Loader (rgthree)"
+      },
+      "widgets_values": [
+        {},
+        {
+          "type": "PowerLoraLoaderHeaderWidget"
+        },
+        {
+          "on": true,
+          "lora": "qwen-image-2.1-fix-1.0-comfy.safetensors",
+          "strength": 1,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "lenovo.safetensors",
+          "strength": 1.5,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "realism-nb-qwen-image-2.1-lokr-step1000.safetensors",
+          "strength": 0.6,
+          "strengthTwo": null
+        },
+        {},
+        ""
+      ],
+      "widgets_values_named": {
+        "divider": {},
+        "PowerLoraLoaderHeaderWidget": {
+          "type": "PowerLoraLoaderHeaderWidget"
+        },
+        "lora_1": {
+          "on": true,
+          "lora": "qwen-image-2.1-fix-1.0-comfy.safetensors",
+          "strength": 1,
+          "strengthTwo": null
+        },
+        "lora_2": {
+          "on": false,
+          "lora": "lenovo.safetensors",
+          "strength": 1.5,
+          "strengthTwo": null
+        },
+        "lora_3": {
+          "on": false,
+          "lora": "realism-nb-qwen-image-2.1-lokr-step1000.safetensors",
+          "strength": 0.6,
+          "strengthTwo": null
+        },
+        "divider#1": {},
+        "➕ Add Lora": ""
+      }
+    },
+    {
+      "id": 6,
+      "type": "KSampler",
+      "pos": [
+        1940,
+        540
+      ],
+      "size": [
+        300,
+        350
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "Model",
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 3
+        },
+        {
+          "label": "Positive",
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 13
+        },
+        {
+          "label": "Negative",
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 14
+        },
+        {
+          "label": "Latent",
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 30
+        },
+        {
+          "label": "Seed",
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "label": "Steps",
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "label": "CFG",
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "label": "Sampler",
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "label": "Scheduler",
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "label": "Denoise",
+          "localized_name": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Latent",
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        312823617523847,
+        "randomize",
+        35,
+        2,
+        "er_sde",
+        "simple",
+        1
+      ],
+      "widgets_values_named": {
+        "seed": 312823617523847,
+        "control_after_generate": "randomize",
+        "steps": 35,
+        "cfg": 2,
+        "sampler_name": "er_sde",
+        "scheduler": "simple",
+        "denoise": 1
+      }
+    },
+    {
+      "id": 7,
+      "type": "VAEDecode",
+      "pos": [
+        2340,
+        80
+      ],
+      "size": [
+        560,
+        140
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "Latent",
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 15
+        },
+        {
+          "label": "VAE",
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Image",
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 8,
+      "type": "SaveImage",
+      "pos": [
+        2340,
+        310
+      ],
+      "size": [
+        560,
+        780
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "图片",
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 16
+        },
+        {
+          "label": "保存路径前缀",
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "图片",
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "输出图片",
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "qwen-image-2.1/t2i_Q8_0"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "qwen-image-2.1/t2i_Q8_0"
+      }
+    },
+    {
+      "id": 20,
+      "type": "MirrorOptionalReferenceImage",
+      "pos": [
+        380,
+        460
+      ],
+      "size": [
+        300,
+        260
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "参考图片",
+          "localized_name": "参考图片",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "label": "启用此参考图",
+          "localized_name": "启用此参考图",
+          "name": "enabled",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "enabled"
+          },
+          "link": null
+        },
+        {
+          "label": "上传参考图",
+          "localized_name": "上传参考图",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "参考图片",
+          "localized_name": "参考图片",
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            23
+          ]
+        },
+        {
+          "label": "Mask",
+          "localized_name": "Mask",
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "label": "参考图有效",
+          "localized_name": "参考图有效",
+          "name": "reference_active",
+          "type": "BOOLEAN",
+          "links": []
+        }
+      ],
+      "title": "参考图 2",
+      "properties": {
+        "Node name for S&R": "MirrorOptionalReferenceImage"
+      },
+      "widgets_values": [
+        "",
+        true,
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "",
+        "enabled": true,
+        "upload": "image"
+      }
+    },
+    {
+      "id": 21,
+      "type": "MirrorOptionalReferenceImage",
+      "pos": [
+        40,
+        800
+      ],
+      "size": [
+        300,
+        260
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "参考图片",
+          "localized_name": "参考图片",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "label": "启用此参考图",
+          "localized_name": "启用此参考图",
+          "name": "enabled",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "enabled"
+          },
+          "link": null
+        },
+        {
+          "label": "上传参考图",
+          "localized_name": "上传参考图",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "参考图片",
+          "localized_name": "参考图片",
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            25
+          ]
+        },
+        {
+          "label": "Mask",
+          "localized_name": "Mask",
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "label": "参考图有效",
+          "localized_name": "参考图有效",
+          "name": "reference_active",
+          "type": "BOOLEAN",
+          "links": []
+        }
+      ],
+      "title": "参考图 3",
+      "properties": {
+        "Node name for S&R": "MirrorOptionalReferenceImage"
+      },
+      "widgets_values": [
+        "",
+        true,
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "",
+        "enabled": true,
+        "upload": "image"
+      }
+    },
+    {
+      "id": 22,
+      "type": "MirrorOptionalReferenceImage",
+      "pos": [
+        380,
+        800
+      ],
+      "size": [
+        300,
+        260
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "参考图片",
+          "localized_name": "参考图片",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "label": "启用此参考图",
+          "localized_name": "启用此参考图",
+          "name": "enabled",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "enabled"
+          },
+          "link": null
+        },
+        {
+          "label": "上传参考图",
+          "localized_name": "上传参考图",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "参考图片",
+          "localized_name": "参考图片",
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            27
+          ]
+        },
+        {
+          "label": "Mask",
+          "localized_name": "Mask",
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "label": "参考图有效",
+          "localized_name": "参考图有效",
+          "name": "reference_active",
+          "type": "BOOLEAN",
+          "links": []
+        }
+      ],
+      "title": "参考图 4",
+      "properties": {
+        "Node name for S&R": "MirrorOptionalReferenceImage"
+      },
+      "widgets_values": [
+        "",
+        true,
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "",
+        "enabled": true,
+        "upload": "image"
+      }
+    },
+    {
+      "id": 24,
+      "type": "RepeatLatentBatch",
+      "pos": [
+        1940,
+        80
+      ],
+      "size": [
+        300,
+        100
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "Latent",
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 9
+        },
+        {
+          "label": "批量张数",
+          "localized_name": "amount",
+          "name": "amount",
+          "type": "INT",
+          "widget": {
+            "name": "amount"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Latent",
+          "localized_name": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            30
+          ]
+        }
+      ],
+      "title": "批量张数",
+      "properties": {
+        "Node name for S&R": "RepeatLatentBatch"
+      },
+      "widgets_values": [
+        1
+      ],
+      "widgets_values_named": {
+        "amount": 1
+      }
+    },
+    {
+      "id": 25,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        40,
+        80
+      ],
+      "size": [
+        300,
+        300
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            33
+          ]
+        }
+      ],
+      "title": "正面提示词 1",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "widgets_values_named": {
+        "value": ""
+      }
+    },
+    {
+      "id": 26,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        720,
+        80
+      ],
+      "size": [
+        300,
+        300
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            32
+          ]
+        }
+      ],
+      "title": "负面提示词",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "widgets_values_named": {
+        "value": ""
+      }
+    },
+    {
+      "id": 27,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        380,
+        80
+      ],
+      "size": [
+        300,
+        300
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            34
+          ]
+        }
+      ],
+      "title": "正面提示词 2",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "widgets_values_named": {
+        "value": ""
+      }
+    },
+    {
+      "id": 28,
+      "type": "StringConcatenate",
+      "pos": [
+        720,
+        460
+      ],
+      "size": [
+        300,
+        166
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "string_a",
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 33
+        },
+        {
+          "localized_name": "string_b",
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": 34
+        },
+        {
+          "localized_name": "delimiter",
+          "name": "delimiter",
+          "type": "STRING",
+          "widget": {
+            "name": "delimiter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            31
+          ]
+        }
+      ],
+      "title": "正面提示词",
+      "properties": {
+        "Node name for S&R": "StringConcatenate"
+      },
+      "widgets_values": [
+        "",
+        "",
+        "\n"
+      ],
+      "widgets_values_named": {
+        "string_a": "",
+        "string_b": "",
+        "delimiter": "\n"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      2,
+      0,
+      10,
+      1,
+      "CLIP"
+    ],
+    [
+      3,
+      10,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      6,
+      3,
+      0,
+      7,
+      1,
+      "VAE"
+    ],
+    [
+      7,
+      9,
+      0,
+      4,
+      0,
+      "INT"
+    ],
+    [
+      8,
+      9,
+      1,
+      4,
+      1,
+      "INT"
+    ],
+    [
+      9,
+      4,
+      0,
+      24,
+      0,
+      "LATENT"
+    ],
+    [
+      13,
+      5,
+      0,
+      6,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      14,
+      5,
+      1,
+      6,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      15,
+      6,
+      0,
+      7,
+      0,
+      "LATENT"
+    ],
+    [
+      16,
+      7,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      30,
+      24,
+      0,
+      6,
+      3,
+      "LATENT"
+    ],
+    [
+      33,
+      25,
+      0,
+      28,
+      0,
+      "STRING"
+    ],
+    [
+      34,
+      27,
+      0,
+      28,
+      1,
+      "STRING"
+    ],
+    [
+      4,
+      10,
+      1,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      19,
+      11,
+      0,
+      5,
+      1,
+      "IMAGE"
+    ],
+    [
+      23,
+      20,
+      0,
+      5,
+      2,
+      "IMAGE"
+    ],
+    [
+      25,
+      21,
+      0,
+      5,
+      3,
+      "IMAGE"
+    ],
+    [
+      27,
+      22,
+      0,
+      5,
+      4,
+      "IMAGE"
+    ],
+    [
+      5,
+      3,
+      0,
+      5,
+      6,
+      "VAE"
+    ],
+    [
+      31,
+      28,
+      0,
+      5,
+      7,
+      "STRING"
+    ],
+    [
+      32,
+      26,
+      0,
+      5,
+      8,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 2,
+      "title": "输入 · 提示词与参考图",
+      "bounding": [
+        0,
+        0,
+        1040,
+        1200
+      ],
+      "color": "#345b63",
+      "flags": {}
+    },
+    {
+      "id": 1,
+      "title": "模型与尺寸",
+      "bounding": [
+        1060,
+        0,
+        380,
+        1200
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "LoRA",
+      "bounding": [
+        1460,
+        0,
+        420,
+        400
+      ],
+      "color": "#6b4c7a",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "Encoding",
+      "bounding": [
+        1460,
+        420,
+        420,
+        780
+      ],
+      "color": "#526f3e",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "Sampling · 采样与批量",
+      "bounding": [
+        1900,
+        0,
+        380,
+        1200
+      ],
+      "color": "#8a6d3b",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "输出",
+      "bounding": [
+        2300,
+        0,
+        640,
+        1200
+      ],
+      "color": "#526f3e",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.703738587792081,
+      "offset": [
+        69.96395759360861,
+        353.4522581372088
+      ]
+    },
+    "frontendVersion": "1.53.6"
+  },
+  "version": 0.4
+}
