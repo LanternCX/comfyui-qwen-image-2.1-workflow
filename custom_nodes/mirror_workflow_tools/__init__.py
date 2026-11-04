@@ -5,6 +5,26 @@ import nodes
 WEB_DIRECTORY = "./web"
 
 
+class MirrorDiffusionModelLoader:
+    @classmethod
+    def INPUT_TYPES(cls):
+        files = set(folder_paths.get_filename_list("diffusion_models"))
+        files.update(folder_paths.get_filename_list("unet_gguf"))
+        return {"required": {
+            "unet_name": (sorted(files),),
+            "weight_dtype": nodes.UNETLoader.INPUT_TYPES()["required"]["weight_dtype"],
+        }}
+
+    RETURN_TYPES = ("MODEL",)
+    FUNCTION = "load_model"
+    CATEGORY = "model/loaders"
+
+    def load_model(self, unet_name, weight_dtype="default"):
+        if unet_name.lower().endswith(".gguf"):
+            return nodes.NODE_CLASS_MAPPINGS["UnetLoaderGGUF"]().load_unet(unet_name)
+        return nodes.UNETLoader().load_unet(unet_name, weight_dtype)
+
+
 class MirrorOptionalReferenceImage(nodes.LoadImage):
     @classmethod
     def INPUT_TYPES(cls):
@@ -55,10 +75,12 @@ class MirrorAnyReferenceActive:
 
 
 NODE_CLASS_MAPPINGS = {
+    "MirrorDiffusionModelLoader": MirrorDiffusionModelLoader,
     "MirrorOptionalReferenceImage": MirrorOptionalReferenceImage,
     "MirrorAnyReferenceActive": MirrorAnyReferenceActive,
 }
 NODE_DISPLAY_NAME_MAPPINGS = {
+    "MirrorDiffusionModelLoader": "模型选择（GGUF / Safetensors）",
     "MirrorOptionalReferenceImage": "参考图（可选）",
     "MirrorAnyReferenceActive": "使用有效参考图",
 }

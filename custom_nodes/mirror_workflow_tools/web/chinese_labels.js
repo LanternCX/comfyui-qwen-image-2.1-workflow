@@ -1,7 +1,7 @@
 import { app } from "../../../scripts/app.js";
 
 const nodeTypes = new Set([
-  "UnetLoaderGGUF", "CLIPLoader", "VAELoader", "ResolutionSelector",
+  "UnetLoaderGGUF", "MirrorDiffusionModelLoader", "CLIPLoader", "VAELoader", "ResolutionSelector",
   "EmptyLatentImage", "TextEncodeQwenImage21", "Power Lora Loader (rgthree)",
   "ComfySwitchNode", "KSampler", "VAEDecode", "SaveImage", "PreviewAny",
   "QwenImage21_T2IPromptRewrite", "QwenImage21_EditPromptRewrite",
