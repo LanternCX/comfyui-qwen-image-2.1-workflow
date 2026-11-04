@@ -9,3 +9,5 @@ output/
 *.gguf
 *.pt
 *.pth
+.runtime/
+.agents/skills/comfy-workflow/connection.json
